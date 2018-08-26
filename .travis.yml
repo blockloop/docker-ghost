@@ -1,19 +1,27 @@
 sudo: required
-
-language: ruby
-
 services:
   - docker
+
+env:
+  global:
+    - DOCKER_USER=blockloop
 
 addons:
   apt:
     packages:
     - make
 
-before_install:
+script:
   - make build
 
-deploy:
-  - echo "$DOCKER_HUB_PASSWORD" | docker login -u blockloop --password-stdin
-  - make push
+after_script:
+  - docker images
 
+before_deploy:
+  - docker login -u "$DOCKER_USER" -p "$DOCKER_HUB_PASSWORD"
+
+deploy:
+  provider: script
+  script: make push
+  on:
+    branch: master
