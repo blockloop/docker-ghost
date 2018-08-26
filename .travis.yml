@@ -18,7 +18,8 @@ after_script:
   - docker images
 
 before_deploy:
-  - docker login -u "$DOCKER_USER" -p "$DOCKER_HUB_PASSWORD"
+  - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
+  - docker pull blockloop/ghost:2 # pull cached layers
 
 deploy:
   provider: script
