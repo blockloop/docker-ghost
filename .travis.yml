@@ -1,0 +1,15 @@
+sudo: required
+
+language: ruby
+
+services:
+  - docker
+
+before_install:
+  - sudo apt-get install -y make
+  - make build
+
+deploy:
+  - echo "$DOCKER_HUB_PASSWORD" | docker login -u blockloop --password-stdin
+  - make push
+
