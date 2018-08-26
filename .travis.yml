@@ -11,6 +11,9 @@ addons:
     packages:
     - make
 
+before_script:
+  - docker pull blockloop/ghost
+
 script:
   - make build
 
@@ -19,7 +22,6 @@ after_script:
 
 before_deploy:
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
-  - docker pull blockloop/ghost:2 # pull cached layers
 
 deploy:
   provider: script
