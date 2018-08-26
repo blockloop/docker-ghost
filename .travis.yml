@@ -5,8 +5,12 @@ language: ruby
 services:
   - docker
 
+addons:
+  apt:
+    packages:
+    - make
+
 before_install:
-  - sudo apt-get install -y make
   - make build
 
 deploy:
