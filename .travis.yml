@@ -11,10 +11,8 @@ addons:
     packages:
     - make
 
-before_script:
-  - docker pull blockloop/ghost
-
 script:
+  - docker pull blockloop/ghost
   - make build
 
 after_script:
