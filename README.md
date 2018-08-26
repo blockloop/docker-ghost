@@ -1,6 +1,6 @@
 # Docker Ghost
 
-[![Travis (.org)](https://img.shields.io/travis/blockloop/docker-ghost.svg)](https://travis-ci.org/blockloop/docker-ghost/builds)
+[![Travis (.org)](https://img.shields.io/travis/blockloop/docker-ghost.svg)](https://travis-ci.org/blockloop/docker-ghost)
 [![Docker Pulls](https://img.shields.io/docker/pulls/blockloop/ghost.svg?style=flat-square)](https://hub.docker.com/r/blockloop/ghost/)
 
 [Ghost](https://ghost.org) as a docker container, deployed to Docker Hub.
