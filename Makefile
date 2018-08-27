@@ -1,7 +1,7 @@
 REPO := blockloop/ghost
 MAJOR ?= 2
 MINOR ?= 0
-PATCH ?= 2
+PATCH ?= 3
 FULL  := $(MAJOR).$(MINOR).$(PATCH)
 
 build:
