@@ -1,17 +1,22 @@
 REPO := blockloop/ghost
-MAJOR ?= 2
-MINOR ?= 0
-PATCH ?= 3
-FULL  := $(MAJOR).$(MINOR).$(PATCH)
+
+dotword = $(word $2,$(subst ., ,$1))
+
+VERSION  ?= $(shell curl -SsL https://api.github.com/repos/TryGhost/ghost/releases/latest | jq -r '.tag_name')
+MAJOR := $(call dotword,$(VERSION),1)
+MINOR := $(call dotword,$(VERSION),2)
+PATCH := $(call dotword,$(VERSION),3)
 
 build:
-	docker build --build-arg VERSION=$(FULL) -t $(REPO):$(FULL) .
-	docker tag $(REPO):$(FULL) $(REPO):latest
-	docker tag $(REPO):$(FULL) $(REPO):$(MAJOR).$(MINOR)
-	docker tag $(REPO):$(FULL) $(REPO):$(MAJOR)
+	@echo "Building $(VERSION)"
+	@docker build --build-arg VERSION=$(VERSION) -t $(REPO):$(VERSION) .
+	@docker tag $(REPO):$(VERSION) $(REPO):latest
+	@docker tag $(REPO):$(VERSION) $(REPO):$(MAJOR).$(MINOR)
+	@docker tag $(REPO):$(VERSION) $(REPO):$(MAJOR)
 
 push: build
-	docker push $(REPO):latest
-	docker push $(REPO):$(FULL)
-	docker push $(REPO):$(MAJOR)
-	docker push $(REPO):$(MAJOR).$(MINOR)
+	@echo "Pushing $(VERSION)"
+	@docker push $(REPO):latest
+	@docker push $(REPO):$(VERSION)
+	@docker push $(REPO):$(MAJOR)
+	@docker push $(REPO):$(MAJOR).$(MINOR)
