@@ -1,4 +1,4 @@
-FROM node:8-slim
+FROM node:lts-slim
 RUN useradd -ms /bin/bash ghost-admin
 RUN set -x \
         && npm i -g ghost-cli@latest \

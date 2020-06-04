@@ -4,7 +4,7 @@ VERSION := $(shell curl -SsL https://api.github.com/repos/TryGhost/ghost/release
 MAJOR   := $(call dotword,$(VERSION),1)
 MINOR   := $(call dotword,$(VERSION),2)
 PATCH   := $(call dotword,$(VERSION),3)
-REPO    := blockloop/ghost
+REPO    := docker.io/blockloop/ghost
 
 .DEFAULT: build
 build:
