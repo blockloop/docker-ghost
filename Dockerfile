@@ -1,4 +1,5 @@
-FROM node:lts-slim
+ARG NODE_VERSION=lts
+FROM node:$NODE_VERSION-slim
 RUN useradd -ms /bin/bash ghost-admin
 RUN set -x \
         && npm i -g ghost-cli@latest \
